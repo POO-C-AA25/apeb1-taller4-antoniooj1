@@ -19,7 +19,7 @@ public class Problema3_Autobus {
         this.permisoVigente = (permisoVigente == 1);
     }
 
-    public boolean tienePermiso() {
+    public boolean permiso_Obtenido() {
         return permisoVigente;
     }
 

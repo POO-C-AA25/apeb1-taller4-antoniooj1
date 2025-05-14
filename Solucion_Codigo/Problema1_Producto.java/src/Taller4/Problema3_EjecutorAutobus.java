@@ -11,16 +11,17 @@ import java.util.Scanner;
  * @author admin
  */
 public class Problema3_EjecutorAutobus {
-      public static void main(String[] args) {
+
+    public static void main(String[] args) {
         Scanner entrada = new Scanner(System.in);
 
-        System.out.print("¿Cuantos estudiantes desea registrar? ");
-        int cantidad = entrada.nextInt();
-        entrada.nextLine(); 
+        System.out.print("Cuantos estudiantes desea registrar? ");
+        int cantEstudiantes = entrada.nextInt();
+        entrada.nextLine();
 
-        Problema3_Autobus[] estudiantes = new Problema3_Autobus[cantidad];
+        Problema3_Autobus[] estudiantes = new Problema3_Autobus[cantEstudiantes];
 
-        for (int i = 0; i < cantidad; i++) {
+        for (int i = 0; i < cantEstudiantes; i++) {
             System.out.println("\nEstudiante #" + (i + 1));
             System.out.print("Nombre: ");
             String nombre = entrada.nextLine();
@@ -39,24 +40,24 @@ public class Problema3_EjecutorAutobus {
         int aceptados = 0;
         int rechazados = 0;
 
-        System.out.println("\n--- Verificación de permiso ---");
-        for (int i = 0; i < cantidad; i++) {
+        System.out.println("\n--- Revisión de acceso al transporte ---");
+
+        for (int i = 0; i < cantEstudiantes; i++) {
             System.out.println(estudiantes[i].toString());
 
-            if (estudiantes[i].tienePermiso()) {
-                System.out.println("Permiso: Sí");
-                System.out.println("Puede subir al bus\n");
+            if (estudiantes[i].permiso_Obtenido()) {
+                System.out.println("Tiene autorización.");
+                System.out.println("Acceso al bus concedido.\n");
                 aceptados++;
             } else {
-                System.out.println("Permiso: No");
-                System.out.println("No puede subir al bus\n");
+                System.out.println("No cuenta con autorización.");
+                System.out.println("Acceso al bus denegado.\n");
                 rechazados++;
             }
+
+            System.out.println("--- Resumen del día ---");
+            System.out.println("Total autorizados: " + aceptados);
+            System.out.println("Total denegados: " + rechazados);
         }
-
-        System.out.println("--- Resumen del día ---");
-        System.out.println("Permisos aceptados: " + aceptados);
-        System.out.println("Permisos rechazados: " + rechazados);
-
     }
 }

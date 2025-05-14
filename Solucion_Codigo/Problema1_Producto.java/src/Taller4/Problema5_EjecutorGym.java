@@ -4,15 +4,13 @@
  */
 package Taller4;
 
-import java.util.Scanner;
-
 /**
  *
  * @author admin
  */
-public class Problema4_EjecutorParque {
-public static void main(String[] args) {
-        Problema4_Parque parque = new Problema4_Parque();
-        parque.procedimiento();
+public class Problema5_EjecutorGym {
+    public static void main(String[] args) {
+        Problema5_SistemaDeDatos sistema = new Problema5_SistemaDeDatos();
+        sistema.procedimiento();
     }
 }

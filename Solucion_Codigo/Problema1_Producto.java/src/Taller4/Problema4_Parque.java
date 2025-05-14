@@ -4,43 +4,73 @@
  */
 package Taller4;
 
+import java.util.Scanner;
+
 /**
  *
  * @author admin
  */
-class Problema4_Parque {
-    public Problema4_Visitante[] visitantes;
-    public int contador;
+public class Problema4_Parque {
 
-    public Problema4_Parque(int capacidad) {
-        visitantes = new Problema4_Visitante[capacidad];
-        contador = 0;
-    }
+    Scanner entrada = new Scanner(System.in);
+    int visitantesValidos = 0;
 
-    public void registrarVisitante(Problema4_Visitante visitante) {
-        if (contador < visitantes.length) {
-            visitante.verificarAcceso();
-            visitantes[contador] = visitante;
-            contador++;
-        }
-    }
+    public void procedimiento() {
+        char continuar;
 
-    public void mostrarResultados() {
-        int permitidos = 0;
-        int rechazados = 0;
+        do {
+            System.out.print("Nombre del visitante: ");
+            String nombre = entrada.nextLine();
+            
+            System.out.print("Edad: ");
+            int edad = entrada.nextInt();
 
-        System.out.println("\n--- RESULTADOS ---");
-        for (int i = 0; i < contador; i++) {
-            System.out.println(visitantes[i].toString() + "\n");
-            if (visitantes[i].tieneAcceso()) {
-                permitidos++;
-            } else {
-                rechazados++;
+            System.out.print("Estatura (Ingresela en metros): ");
+            double estatura = entrada.nextDouble();
+
+            System.out.println("Elige un juego:");
+            System.out.println("1. Martillo ");
+            System.out.println("2. Gusanito");
+            System.out.println("3. Tagada");
+            int juego = entrada.nextInt();
+           
+
+            Problema4_Visitante visitante = new Problema4_Visitante(nombre, 
+                    edad, estatura);
+
+            boolean acceso = false;
+
+            if (juego == 1 && edad >= 12 && estatura >= 1.50) {
+                acceso = true;
             }
-        }
 
-        System.out.println("--- RESUMEN DEL PARQUE ---");
-        System.out.println("Total permitidos: " + permitidos);
-        System.out.println("Total rechazados: " + rechazados);
+            if (juego == 2 && edad >= 5 && estatura >= 0.90) {
+                acceso = true;
+            }
+
+            if (juego == 3 && edad >= 15 && estatura >= 1.60) {
+                acceso = true;
+            }
+
+            if (juego != 1 && juego != 2 && juego != 3) {
+                System.out.println("Opción no válida.");
+            }
+
+            if (acceso) {
+                System.out.println( visitante + " puede ingresar al juego!");
+                visitantesValidos++;
+            } else {
+                System.out.println("Lo sentimos, " + visitante + 
+                        " no cumple los requisitos.");
+            }
+
+            System.out.print("¿Desea ingresar otro visitante? (s/n): ");
+            continuar = entrada.next().charAt(0);
+             entrada.nextLine();
+
+        } while (continuar == 's');
+
+        System.out.println("\nTotal de visitantes que"
+                + " cumplen con todas las condiciones: " + visitantesValidos);
     }
 }
