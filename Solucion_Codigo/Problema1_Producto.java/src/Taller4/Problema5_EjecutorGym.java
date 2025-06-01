@@ -10,7 +10,12 @@ package Taller4;
  */
 public class Problema5_EjecutorGym {
     public static void main(String[] args) {
-        Problema5_SistemaDeDatos sistema = new Problema5_SistemaDeDatos();
-        sistema.procedimiento();
+        Problema5_Cliente[] clientes = new Problema5_Cliente[3];
+        clientes[0] = new Problema5_Cliente("Ana", "Cardio", 45, true);
+        clientes[1] = new Problema5_Cliente("Luis", "Fuerza", 30, true);
+        clientes[2] = new Problema5_Cliente("Sofia", "Estiramiento", 25, false);
+        Problema5_Gimnasio gimnasio = new Problema5_Gimnasio();
+        gimnasio.calcularEstadisticas(clientes);
+        System.out.println(gimnasio.toString());
     }
 }

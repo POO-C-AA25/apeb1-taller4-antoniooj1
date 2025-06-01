@@ -10,34 +10,52 @@ package Taller4;
  */
 class Producto {
 
-    public double precioP;
-    public int cantidadP;
-    public double descuento;
-    public double precioFinal;
-    public double montoD;
+    public double precioProducto;
+    public int numProductos;
+    public double costoTotal;
+    public double costoDescuento;
+    public int descuento;
+    public String nombreProducto;
 
-    public Producto(double precioP, int cantidadP) {
-        this.precioP = precioP;
-        this.cantidadP = cantidadP;
+    public Producto(double precioProducto, int numProductos, String nombre) {
+        this.precioProducto = precioProducto;
+        this.numProductos = numProductos;
+        this.nombreProducto = nombre;
+
     }
 
-    public double calcularDescuento(double precioP, int cantidadP) {
-        this.descuento = (this.precioP >= 1000 && this.cantidadP >= 10) ? (10) :
-                (5);
-        this.montoD = (this.cantidadP * this.precioP) * (this.descuento / 100);
-        return this.montoD;
+    public int calcularDescuento(double precioPruduc, int numProd) {
+        if (precioPruduc >= 1000 && numProd >= 10) {
+            descuento = 10;
+        } else {
+            descuento = 5;
+        }
+        return descuento;
     }
 
-    public double calcularPrecioFinal() {
-        this.precioFinal = (this.cantidadP * this.precioP) - this.montoD;
-        return this.precioFinal;
+    public void calcularPrecioCompra(double precioProduc, int precioProd) {
+        costoTotal = precioProduc * precioProd;
+        costoDescuento = costoTotal - (costoTotal * descuento / 100);
+
     }
 
+    @Override
     public String toString() {
-        return "Precio unitario: " + precioP
-                + "\nCantidad: " + cantidadP
-                + "\nDescuento aplicado: " + descuento + "%"
-                + "\nMonto de descuento: " + montoD
-                + "\nPrecio final: " + precioFinal;
+        return String.format("""
+                                 Producto:
+                                 Nombre del producto: %s
+                                 Precio del Producto: %.2f
+                                 Cantidad de producto: %d
+                                 Precio sin descuento: %.2f
+                                 Descuento aplicado: %d
+                                 Precio con descuento aplicado: %.2f\n
+                                 """,
+                nombreProducto,
+                precioProducto,
+                numProductos,
+                costoTotal,
+                descuento,
+                costoDescuento);
     }
+
 }
